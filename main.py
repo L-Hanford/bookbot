@@ -16,7 +16,15 @@ def main():
     word_counter = book_word_counter(read_text)
     #Generates the character counter as compared to the dictionary provided above vs the text provided
     character_counter = book_character_counter(read_text,character_dictionary)
-    print(character_counter)
+    #Provides a sorted dict of occurrences of characters within provided text
+    character_counter_sorted = report_printer(character_counter) 
+    
+
+    
+    for entry in character_counter_sorted:
+        i = 0
+        print(f"{entry["char"]} {entry["num"]} ")
+        i += 1
 
 def get_book_text(path_to_text):
     with open(path_to_text) as book:
@@ -31,5 +39,15 @@ def book_character_counter(text,character_dictionary):
         if character in character_dictionary:
             character_dictionary[character] += 1
     return character_dictionary
+
+def sort_on_counter(d):
+    return d["num"]
+    
+def report_printer(characters_counted_dict):
+    sorted_characters = []
+    for character in characters_counted_dict:
+        sorted_characters.append({"char": character, "num": characters_counted_dict[character]})
+    sorted_characters.sort(reverse=True,key=sort_on_counter)
+    return sorted_characters
 
 main()
