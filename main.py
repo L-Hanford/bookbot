@@ -19,8 +19,6 @@ def main():
     #Provides a sorted dict of occurrences of characters within provided text
     character_counter_sorted = report_printer(character_counter) 
     
-
-    
     for entry in character_counter_sorted:
         i = 0
         print(f"{entry["char"]} {entry["num"]} ")
